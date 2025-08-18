@@ -6,7 +6,12 @@ const genData = async (data_set) => {
 }
 
 // Get the guesser AI chosen in the URL
-let { guesser = '' } = Object.fromEntries(new URLSearchParams(location.search))
+let { guesser = 'median' } = Object.fromEntries(
+  new URLSearchParams(location.search)
+)
+if (guesser == 'median') {
+  history.replaceState(null, '', '?guesser=median')
+}
 document.querySelector('.guesser-name.blue-text').innerHTML = guesser
 
 //draws graph with the points
